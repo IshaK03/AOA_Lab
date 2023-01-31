@@ -33,10 +33,39 @@ public class Main{
       System.out.println(arr[i] + " ");
     }
   }
+  
+    static int WorstCase(int arr[]){
+        int n = arr.length;
+        int count1 = 0;
+        int count2 = 0;
+        int finalcount = 0;
+        int smallest = 0;
+        int temp;
+        for(int i=0;i<n;i++){
+            smallest = i;
+            //count++;
+            for(int j=i+1;j<n;j++){
+                count1++;
+                if(arr[j]>arr[smallest]){
+                    smallest = j;
+                    //count1++;
+                }
+            }
+            temp = arr[i];
+            arr[i] = arr[smallest];
+            arr[smallest] = temp;
+            count1++;
+            //count2++;
+        }
+        
+        finalcount = count1;
+        return finalcount;
+    }
+    
     
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int x = 500;
+        int x = 5;
         int arr[] = new int[x];
         int max = 500;
         int min = 0;
@@ -60,8 +89,15 @@ public class Main{
         for(int i=0;i<x;i++){ //printing sorted array
             System.out.print(arr[i] + " ");
         }
-    
+        
+      
+        int WC = obj.WorstCase(arr);
+        for(int i=0;i<x;i++){ //printing sorted array
+            System.out.print(arr[i] + " ");
+        }
         System.out.print("\n");
         System.out.print("Number of iterations:" + C);
+        System.out.print("\n");
+        System.out.print("Number of iterations Worst Case:" + WC);
     }
 }
