@@ -1,8 +1,9 @@
 import java.util.*;
 
 public class Main
-{   
-    static int BinarySearch(int arr[],int key,int low,int high){
+{ 
+    static int BinarySearch(int arr[],int key,int low,int high int count){
+        count++;
         int mid = 0;
         if(low>high){
             return 0;
@@ -16,6 +17,8 @@ public class Main
                 return mid;
             }
         }
+        
+        System.out.println("Count is:" + count);
     }
     
    
@@ -24,8 +27,9 @@ public class Main
 	    Scanner sc = new Scanner(System.in);
 	    int arr[] = new int[]{5,9,14,17,19,22,25,28,30,39};
 	    int key = 17;
+	    int count = 0;
 	    Main obj = new Main();
-	    int res = obj.BinarySearch(arr,key,0,9);
+	    int res = obj.BinarySearch(arr,key,0,9, count);
 	    System.out.println("Key is at index number:" + res);
 	    
 	}
