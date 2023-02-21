@@ -13,9 +13,9 @@ public class Main
                 return BinarySearch(arr,key,low,mid-1,count);
             }else if(key>arr[mid]){
                 return BinarySearch(arr,key,mid+1,high,count);
-            }else if(arr[low]==key){
+            }else if(arr[mid]==key){
                 System.out.println("Count is: " + count);
-                return low;
+                return mid;
             }else{
                 return -1;
             }
