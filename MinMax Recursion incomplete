@@ -1,32 +1,50 @@
-public class Main
+import java.util.Scanner;
+
+public class MinMaxRecursive
 {
-    public static int MinMax(int[] arr,int i,int j,int max,int min){
+    static int min = 0;
+    static int max = 0;
+
+    public static void MinMax(int[] arr,int i,int j){
         if(i==j){ //only 1 element in the array
-            max=min=arr[i];
+            if(arr[i]>max){
+                max = arr[i];
+            }
+            if(arr[i]<min){
+                min = arr[i];
+            }
         }
         else if(i==j-1){ //2 elements in the array
-            if(a[i]>a[j]){
-                max = a[i];
-                min = a[j];
+            if(arr[i]>arr[j]){
+                if(arr[i]>max){
+                    max = arr[i];
+                }
+                if(arr[j]<min){
+                    min = arr[j];
+                }
             }
             else{
-                max = a[j];
-                min = a[i];
+                if(arr[j]>max){
+                    max = arr[j];
+                }
+                if(arr[i]<min){
+                    min = arr[i];
+                }
             }
         }
         else{
-            int max1, min1;
+            // int max1=0;
+            // int min1=0;
             int mid = (i+j)/2;
-            MinMax(arr,i,mid,max,min);
-            MinMax(arr,mid+1,j,max1,min1);
-            if(max<max1){
-                max = max1;
-            }
-            if(min>min1){
-                min = min1;
-            }
+            MinMax(arr,i,mid);
+            MinMax(arr,mid+1,j);
+            // if(max<max1){
+            //     max = max1;
+            // }
+            // if(min>min1){
+            //     min = min1;
+            // }
         }
-        return max,min;
     }
     
     
@@ -41,6 +59,9 @@ public class Main
         for(int i=0;i<x;i++){
             arr[i] = (int)(Math.random() * range) + min_range;
         }
+
+        min = arr[0];
+        max = arr[0];
     
         System.out.print("Unsorted array is: ");
         for(int i=0;i<x;i++){ //printing unsorted array
@@ -49,8 +70,10 @@ public class Main
     
         System.out.print("\n");
         
-        Main obj = new Main();
-        int res = obj.MinMax()//LOOK HERE
+        MinMax(arr,0,x-1);
 
+        System.out.println("Max is: " + max);
+        System.out.println("Min is: " + min);
+        sc.close();
 	}
 }
