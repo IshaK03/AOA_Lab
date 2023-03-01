@@ -15,42 +15,30 @@ public class MinMaxRecursive
             }
         }
         else if(i==j-1){ //2 elements in the array
+            int min1 = arr[i];
+            int max1 = arr[j];
             if(arr[i]>arr[j]){
-                if(arr[i]>max){
-                    max = arr[i];
-                }
-                if(arr[j]<min){
-                    min = arr[j];
-                }
+                min1 = arr[j];
+                max1 = arr[i];
             }
-            else{
-                if(arr[j]>max){
-                    max = arr[j];
-                }
-                if(arr[i]<min){
-                    min = arr[i];
-                }
+            if(max1>max){
+                max = max1;
+            }
+            if(min1<min){
+                min = min1;
             }
         }
         else{
-            // int max1=0;
-            // int min1=0;
             int mid = (i+j)/2;
             MinMax(arr,i,mid);
             MinMax(arr,mid+1,j);
-            // if(max<max1){
-            //     max = max1;
-            // }
-            // if(min>min1){
-            //     min = min1;
-            // }
         }
     }
     
     
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-        int x = 5;
+        int x = 50;
         int arr[] = new int[x];
         int max_range = 500;
         int min_range = 0;
@@ -70,10 +58,13 @@ public class MinMaxRecursive
     
         System.out.print("\n");
         
+        long start = System.nanoTime();
         MinMax(arr,0,x-1);
+        long end = System.nanoTime();
 
         System.out.println("Max is: " + max);
         System.out.println("Min is: " + min);
+        System.out.println("Execution Time: " + (end-start));
         sc.close();
 	}
 }
